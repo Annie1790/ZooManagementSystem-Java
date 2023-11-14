@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Zebra extends AbstractAnimal implements LargeAnimal, CanBeGroomed {
+public class Zebra extends AbstractAnimal implements LargeAnimal, CanBeGroomed, CanHaveMuckSweptOut {
 
     private LocalDateTime lastGroomed;
 
@@ -20,5 +20,10 @@ public class Zebra extends AbstractAnimal implements LargeAnimal, CanBeGroomed {
     @Override
     public String toString() {
         return MessageFormat.format("{0}; Last Groomed {1}", super.toString(), lastGroomed);
+    }
+
+    @Override
+    public void clean() {
+        lastGroomed = LocalDateTime.now();
     }
 }

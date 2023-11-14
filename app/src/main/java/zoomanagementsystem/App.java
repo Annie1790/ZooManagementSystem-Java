@@ -1,8 +1,10 @@
 package zoomanagementsystem;
 
 import zoomanagementsystem.models.*;
+import zoomanagementsystem.services.CleaningScheduler;
 import zoomanagementsystem.services.FeedingScheduler;
 import zoomanagementsystem.services.GroomingScheduler;
+import zoomanagementsystem.services.Scheduler;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,8 +19,9 @@ public class App {
                 new Lion(LocalDate.of(2012, 5, 11)),
                 new Zebra(LocalDate.of(2008, 12, 1))
         );
-        List<SmallAnimal> smallAnimals = Collections.singletonList(
-                new Rabbit(LocalDate.of(2014, 1, 1))
+        List<SmallAnimal> smallAnimals = Arrays.asList(
+                new Rabbit(LocalDate.of(2014, 1, 1)),
+                new GuineaFowl(LocalDate.of(2022,05,8))
         );
         List<Animal> animals = new ArrayList<>();
         animals.addAll(largeAnimals);
@@ -32,11 +35,13 @@ public class App {
         Rabbit babyRabbit = new Rabbit(LocalDate.now());
         smallAnimalKeeper.startLookingAfter(babyRabbit);
 
-        FeedingScheduler feedingScheduler = FeedingScheduler.getInstance();
-        GroomingScheduler groomingScheduler = GroomingScheduler.getInstance();
+        Scheduler feedingScheduler = FeedingScheduler.getInstance();
+        Scheduler groomingScheduler = GroomingScheduler.getInstance();
+        Scheduler cleaningScheduler = CleaningScheduler.getInstance();
 
-        feedingScheduler.assignFeedingJobs(keepers);
-        groomingScheduler.assignGroomingJobs(keepers);
+        feedingScheduler.assignJobs(keepers);
+        groomingScheduler.assignJobs(keepers);
+        cleaningScheduler.assignJobs(keepers);
         animals.forEach(System.out::println);
     }
 }

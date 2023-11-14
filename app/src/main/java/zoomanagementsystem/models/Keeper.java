@@ -18,6 +18,10 @@ public class Keeper<T extends Animal> {
         animal.groom();
     }
 
+    public void clean(CanHaveMuckSweptOut animal) {
+        animal.clean();
+    }
+
     public void feed(Animal animal) {
         animal.feed();
     }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public abstract class AbstractAnimal implements Animal {
-    private LocalDate dateOfBirth;
+    private final LocalDate dateOfBirth;
     private LocalDateTime lastFed;
 
     protected AbstractAnimal(LocalDate dateOfBirth) {

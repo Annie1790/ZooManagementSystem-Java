@@ -6,7 +6,7 @@ import zoomanagementsystem.models.Keeper;
 
 import java.util.List;
 
-public class GroomingScheduler {
+public class GroomingScheduler implements Scheduler {
     private static GroomingScheduler instance;
 
     private GroomingScheduler() {
@@ -19,9 +19,10 @@ public class GroomingScheduler {
         return instance;
     }
 
-    public void assignGroomingJobs(List<Keeper<? extends Animal>> keepers) {
+    @Override
+    public void assignJobs(List<Keeper<? extends Animal>> keepers) {
         keepers.forEach(keeper -> keeper.getResponsibleAnimals().forEach(animal -> {
-            if (animal instanceof CanBeGroomed) {
+            if (animal instanceof CanBeGroomed ) {
                 keeper.groom((CanBeGroomed) animal);
             }
         }));
