@@ -35,13 +35,10 @@ public class App {
         Rabbit babyRabbit = new Rabbit(LocalDate.now());
         smallAnimalKeeper.startLookingAfter(babyRabbit);
 
-        Scheduler feedingScheduler = FeedingScheduler.getInstance();
-        Scheduler groomingScheduler = GroomingScheduler.getInstance();
-        Scheduler cleaningScheduler = CleaningScheduler.getInstance();
+        List<Scheduler> schedulers = Arrays.asList(FeedingScheduler.getInstance(), GroomingScheduler.getInstance(),
+            CleaningScheduler.getInstance());
 
-        feedingScheduler.assignJobs(keepers);
-        groomingScheduler.assignJobs(keepers);
-        cleaningScheduler.assignJobs(keepers);
+        schedulers.forEach(scheduler -> scheduler.assignJobs(keepers));
         animals.forEach(System.out::println);
     }
 }
